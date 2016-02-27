@@ -33,7 +33,11 @@
         <img src="https://s3-us-west-1.amazonaws.com/coverhound-staging/testing/vacay1.png" alt="logo" width="220"></img>
             <h2 style="color: rgb(245,245,245);">Let us find your way.</h2>
             <!-- h4 Sign in with social -->
-            <button id="twitter-btn" i class="fa fa-twitter">&nbsp;&nbsp;Sign in With Twitter</i></button> <!-- "Sign in With Facebook/ Twitter" -->
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+              <% end %>
+            <!-- <button id="twitter-btn" i class="fa fa-twitter">&nbsp;&nbsp;Sign in With Twitter</i></button> <!-- "Sign in With Facebook/ Twitter" -->
+            <%= button_to "Sign in With Twitter", user_omniauth_authorize_path(:twitter), class: "fa fa-twitter", id: "twitter-btn" %>
             <button id="facebook-btn" i class="fa fa-facebook">&nbsp;&nbsp;Sign in With Facebook</i></button>
         </div>
     </div>
