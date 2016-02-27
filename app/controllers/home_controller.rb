@@ -7,16 +7,17 @@ class HomeController < ApplicationController
 
   end
 
-  def expedia_query(location, date1, date2)
-    @fu = "jason sucks"
+  def expedia_query(location, startdate, enddate)
+    puts "jason sucks"
 
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
-    #http://terminal2.expedia.com/x/activities/search?location=London&startDate=2016-03-08&endDate=2016-03-18&apikey={INSERT_YOUR_API_KEY}
-    base_uri = 'terminal2.expedia.com'
 
+    response = HTTParty.get('http://terminal2.expedia.com/x/activities/search?location=' + location + '&startDate=' + startdate + '&endDate=' + enddate + '&apikey=' + expedia_key)
 
+    puts response.body, response.code, response.message, response.headers.inspect
 
+    puts "maybe he doesn't suck after all"
   end
 
 
