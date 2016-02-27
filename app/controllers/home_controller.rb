@@ -8,7 +8,6 @@ class HomeController < ApplicationController
   end
 
   def expedia_query(location, startdate, enddate)
-    puts "jason sucks"
 
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
@@ -17,7 +16,6 @@ class HomeController < ApplicationController
 
     puts response.body, response.code, response.message, response.headers.inspect
 
-    puts "maybe he doesn't suck after all"
   end
 
 

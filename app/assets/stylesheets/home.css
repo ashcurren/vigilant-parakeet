@@ -2,3 +2,75 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.active {
+    font-family: "Square Market", Helvetica, Arial, "Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリ
+オ",Meiryo,"MS Pゴシック",sans­serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: rgb(247,247,247);
+ }
+
+html body {
+  background: url('https://images.unsplash.com/photo-1422568374078-27d3842ba676?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=800') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/*
+body {
+    background-image: url('https://images.unsplash.com/photo-1422568374078-27d3842ba676?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=800');
+    background-repeat: no-repeat;
+    background-size: 1352px 1000px;
+    background-attachment: ;
+    background-position: center;
+
+}
+*/
+h2 {
+    font-size: 25px ;
+
+}
+
+div.loginbox {
+    margin-top: 50px;
+    margin-right: 0;
+    margin-bottom: 80px;
+    margin-left: 170px;
+    background-color: rgba(205,192,176, 0.4);
+    border: 1px solid rgb(238,233,233);
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 350px;
+    height: 470px;
+    text-align: center;
+    float: left;
+}
+
+#twitter-btn {
+    background-color: #55acee;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+#facebook-btn {
+    background-color: #3b5998;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
