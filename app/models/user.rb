@@ -11,7 +11,7 @@ def self.from_omniauth(auth)
     user.provider = auth.provider
     user.uid      = auth.uid
     user.username     = auth.info.name
-    user.email = "adventurer"+User.count.to_s+"@vacay.club"
+    user.email = "twitteradventurer"+User.count.to_s+"@vacay.club"
     user.save
   end
 end
