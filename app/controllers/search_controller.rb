@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   before_filter :set_expedia_id_arrays
 
   def index
-
+     @results = expedia_search_query(@expedia_ids_all)
   end
 
   def generate_rec_html
@@ -10,12 +10,12 @@ class SearchController < ApplicationController
 
   end
 
-  end
-
-  def expedia_search_query(location, startdate, enddate)
+  def expedia_search_query(ids_to_filter=[], location='New York', startdate='2016-03-01', enddate='2016-03-04')
 
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
+
+    ids_to_filter = ids_to_filter.map(&:to_s)
 
     response = HTTParty.get('http://terminal2.expedia.com/x/activities/search?location=' + location + '&startDate=' + startdate + '&endDate=' + enddate + '&apikey=' + expedia_key)
 
@@ -32,7 +32,7 @@ class SearchController < ApplicationController
     expedia_results[:title] = e["title"]
     expedia_results[:fromPrice] = e["fromPrice"]
 
-    expedia_array.push expedia_results
+    expedia_array.push expedia_results if ids_to_filter.include?e["id"]
     end
 
     expedia_array
@@ -40,7 +40,7 @@ class SearchController < ApplicationController
 
   end
 
-  def expedia_detail_query(id, startdate, enddate)
+  def expedia_detail_query(id)
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
 
