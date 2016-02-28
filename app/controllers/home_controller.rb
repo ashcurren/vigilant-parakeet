@@ -28,7 +28,22 @@ class HomeController < ApplicationController
     response = HTTParty.get('https://api.uber.com/v1/estimates/price?start_latitude='+sLat+'&start_longitude='+sLong+'&end_latitude='+eLat+'&end_longitude='+eLong, headers: {"Authorization" => "Token OOWRpDScLJvhdQm4yUfmA24r_Kz0OKNdoKh7MuC1
 s7AlWnIrepGsLoi6db-Oct6DCYrhatz9pmRQ-bOu"})
 
-    puts response.body, response.code, response.message, response.headers.inspect
+    uberHash = JSON.parse response.body
+
+    #first result returned is the UberX pricing
+    price = uberHash["prices"].first["estimate"]
+    miles = uberHash["prices"].first["distance"]
+    seconds = uberHash["prices"].first["duration"]
+    mins = seconds/60
+
+    uberD = Hash.new()
+    uberD[:price] = price
+    uberD[:miles] = miles
+    uberD[:mins] = mins
+
+    uberD
+
+    #puts response.body, response.code, response.message, response.headers.inspect
   end
 
 end
