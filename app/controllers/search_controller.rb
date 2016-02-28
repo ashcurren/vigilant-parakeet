@@ -31,6 +31,7 @@ class SearchController < ApplicationController
     expedia_array.push expedia_results
     end
 
+    expedia_array
     #puts response.body, response.code, response.message, response.headers.inspect
 
   end
