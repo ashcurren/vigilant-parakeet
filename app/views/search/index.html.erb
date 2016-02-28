@@ -1,6 +1,17 @@
-<% @results.each do |r| %>
-  <div>
+<div class="container">
+
+<% @results.each_with_index do |r,i| %>
+
+  <div class="row">
     <%=  r[:title] %>
     <%=  image_tag r[:imageUrl] %>
+    <%= r[:duration]%>
+    <%= r[:fromPrice]%>
+    <br/><%= truncate(@descriptions[i][:description], length: 200, separator: ' ') %>
+    <%= r[:latLng] %>
   </div>
+    
+  <br/>
 <% end %>
+
+</div>

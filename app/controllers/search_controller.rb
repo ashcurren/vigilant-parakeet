@@ -3,6 +3,8 @@ class SearchController < ApplicationController
 
   def index
      @results = expedia_search_query(@expedia_ids_all)
+     @descriptions = []
+     @expedia_ids_all.each {|x| @descriptions.push expedia_detail_query x }
   end
 
   def generate_rec_html
@@ -31,6 +33,7 @@ class SearchController < ApplicationController
     expedia_results[:latLng] = e["latLng"]
     expedia_results[:title] = e["title"]
     expedia_results[:fromPrice] = e["fromPrice"]
+    expedia_results[:latLng] = e["latLng"]
 
     expedia_array.push expedia_results if ids_to_filter.include?e["id"]
     end
@@ -61,7 +64,9 @@ class SearchController < ApplicationController
 
   end
 
-  def uber_detail_query(sLat, sLong, eLat, eLong)
+  def uber_detail_query(sLatLong, eLatLong)
+
+    sLatLong.split(",")
 
     sLat = sLat.to_s
     sLong = sLong.to_s
