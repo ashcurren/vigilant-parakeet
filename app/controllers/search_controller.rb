@@ -7,7 +7,7 @@ class SearchController < ApplicationController
 
   def generate_rec_html
     # this will return the full results for each day, one array per day.
-    expedia_search_query
+    expedia_search_query()
 
   end
 
