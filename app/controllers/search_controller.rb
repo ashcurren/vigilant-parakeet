@@ -1,14 +1,49 @@
 class SearchController < ApplicationController
 
+  def initialize()
+    @expedia_ids_all = [184465,
+      278043,
+      248963,
+      183011,
+      288771,
+      183749,
+      319430,
+      326328,
+      266375,
+      279949,
+      184423,
+      185654,
+      185464,
+      183611,
+      183421,
+      274379]
+
+    @expedia_ids_day1 = [184465,
+      278043,
+      248963]
+
+    @expedia_ids_day2 = [185464,
+      183611,
+      183421,
+      274379]
+
+    @expedia_ids_day3 = [266375,
+      279949,
+      184423]
+
+  end
+
   def index
 
   end
 
-  def run_search
+  def generate_rec_html(ids)
+    #ids is an array of expedia ids
+
 
   end
 
-  def expedia_query(location, startdate, enddate)
+  def expedia_detail_query(location, startdate, enddate)
 
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
@@ -57,7 +92,7 @@ class SearchController < ApplicationController
 
   end
 
-  def uber_query(sLat, sLong, eLat, eLong)
+  def uber_detail_query(sLat, sLong, eLat, eLong)
 
     sLat = sLat.to_s
     sLong = sLong.to_s
