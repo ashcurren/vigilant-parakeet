@@ -1,49 +1,18 @@
 class SearchController < ApplicationController
-
-  def initialize()
-    @expedia_ids_all = [184465,
-      278043,
-      248963,
-      183011,
-      288771,
-      183749,
-      319430,
-      326328,
-      266375,
-      279949,
-      184423,
-      185654,
-      185464,
-      183611,
-      183421,
-      274379]
-
-    @expedia_ids_day1 = [184465,
-      278043,
-      248963]
-
-    @expedia_ids_day2 = [185464,
-      183611,
-      183421,
-      274379]
-
-    @expedia_ids_day3 = [266375,
-      279949,
-      184423]
-
-  end
+  before_filter :set_expedia_id_arrays
 
   def index
 
   end
 
-  def generate_rec_html(ids)
-    #ids is an array of expedia ids
-
+  def generate_rec_html
+#    @expedia_ids_day1.each do |event_id|
 
   end
 
-  def expedia_detail_query(location, startdate, enddate)
+  end
+
+  def expedia_search_query(location, startdate, enddate)
 
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
@@ -71,11 +40,11 @@ class SearchController < ApplicationController
 
   end
 
-  def details_query(id, startdate, enddate)
+  def expedia_detail_query(id, startdate, enddate)
     expedia_key = 'wRhEfj9STYhqVcbFd6yuTyBF2GukBVtD'
     expedia_secret = 'yRpakAdxHIRWjm3D'
 
-    response = HTTParty.get('http://terminal2.expedia.com/x/activities/details?activityId=' + id.to_s + '&startDate=' + startdate + '&endDate=' + enddate + '&apikey=' + expedia_key)
+    response = HTTParty.get('http://terminal2.expedia.com/x/activities/details?activityId=' + id.to_s + '&apikey=' + expedia_key)
 
     expedia_details_hash = JSON.parse response.body
 
@@ -120,6 +89,40 @@ s7AlWnIrepGsLoi6db-Oct6DCYrhatz9pmRQ-bOu"})
     #puts response.body, response.code, response.message, response.headers.inspect
   end
 
+private
 
+  def set_expedia_id_arrays
+
+    @expedia_ids_all = [184465,
+        278043,
+        248963,
+        183011,
+        288771,
+        183749,
+        319430,
+        326328,
+        266375,
+        279949,
+        184423,
+        185654,
+        185464,
+        183611,
+        183421,
+        274379]
+
+      @expedia_ids_day1 = [184465,
+        278043,
+        248963]
+
+      @expedia_ids_day2 = [185464,
+        183611,
+        183421,
+        274379]
+
+      @expedia_ids_day3 = [266375,
+        279949,
+        184423]
+
+  end
 
 end
