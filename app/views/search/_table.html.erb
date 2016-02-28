@@ -26,7 +26,11 @@
     <!-- conditonal loop -->
       <% if @day1_uberinfo.size != i %>
       <div class="row">
-          <div class="uber-price col-md-11">
+        <div class="uber-price col-md-6">
+          <div class="text-center"><%= image_tag "uber.png", size:"271x100" %></div>
+          <div class="text-center"><%= image_tag "https://cdn4.iconfinder.com/data/icons/car-silhouettes/1000/sedan-512.png", size:"128x77" %></div>
+        </div>
+          <div class="uber-price col-md-6">
             <div class="text-center"><h3><%=@day1_uberinfo[i][:mins]%> minutes</h3> </div>
             <div class="text-center"><h3><%=@day1_uberinfo[i][:price]%></h3> </div>
             <div class="text-center"><h3><%=@day1_uberinfo[i][:miles]%> miles</h3>  </div>
@@ -65,7 +69,11 @@
 <!-- conditonal loop -->
   <% if @day2_uberinfo.size != i %>
   <div class="row">
-      <div class="uber-price col-md-11">
+    <div class="uber-price col-md-6">
+      <div class="text-center"><%= image_tag "uber.png", size:"271x100" %></div>
+      <div class="text-center"><%= image_tag "https://cdn4.iconfinder.com/data/icons/car-silhouettes/1000/sedan-512.png", size:"128x77" %></div>
+    </div>
+      <div class="uber-price col-md-6">
         <div class="text-center"><h3><%=@day2_uberinfo[i][:mins]%> minutes</h3> </div>
         <div class="text-center"><h3><%=@day2_uberinfo[i][:price]%></h3> </div>
         <div class="text-center"><h3><%=@day2_uberinfo[i][:miles]%> miles</h3>  </div>
