@@ -1,0 +1,62 @@
+<div class="rec-wrapper">
+​<div class="row">
+        <div class="col-md-2"><img src="https://s3-us-west-1.amazonaws.com/coverhound-staging/testing/vacay2.png" alt="logo" width="70"></img></div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a class="active" href="#">Plan A Trip</a></li>
+                    <li><a class="active" href="#">About</a></li>
+                    <li><a class="active" href="#">Contact</a></li>
+                  </ul>
+          </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+
+    <div class="row">
+		<div class="container">
+			<div class="jumbotron">
+				<h1 style="color:white">Destination</h1>
+				<p style="color:white">Description</p>
+			</div>
+		</div>
+	</div>
+
+
+
+		<div id="recommendation-box">
+			<div id="chosen-places" class="col-md-6" style="margin:90px 0px 0px -10px;"><!--Left Segment-->
+				<div class="row"><!-- Negative Margins Here!-->
+				<ul id="sortable1" class="connectedSortable">
+
+					<li class="emptyMessage" style="color:black">Build Your Schedule Here By Dragging and Dropping Starting With Your First Area of <br>Interest</br></li>
+
+				</ul>
+				</div>
+				<div class="btn btn-primary" style="margin-top:10px;"><%= link_to"Sort", results_path, class: "btn-white" %></div>
+			</div><!--Chosen locations will populate this area (Drag and Drop in here)-->
+
+			<div class="row col-md-6" style="margin-left:0px 0px 0px 10px;"><!--Right Segment-->
+				<div id="recommendation-box-title"> Might We Recommend&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-cab"></i>&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-glass"></i>&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-bed"></i>&nbsp;&nbsp;&nbsp;
+				<i class="fa fa-plane"></i>
+				</div>
+
+				<div id="recommended-list"><!--Populated List from Expedia-->
+					<ul id="sortable2" class="connectedSortable">
+
+						<% @rec_array.each do |r| %>
+						<li class="ui-state-highlight">
+						<%= image_tag r[:imageUrl], size:"200x120" %>
+						<h> <%=  r[:title] %></h>
+						<p><%= r[:fromPrice]%></p>
+						<p><%= r[:duration]%></p>
+					  </li>
+						<% end %>
+					  </ul>
+
+					  </div>
+</div>
+</div>
+</div>

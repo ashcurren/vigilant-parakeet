@@ -2,6 +2,10 @@ class SearchController < ApplicationController
   before_filter :set_expedia_id_arrays
   include ActionView::Helpers::TextHelper
 
+  def recommendation
+    @rec_array = expedia_search_query
+  end
+
   def index
     #  @results = expedia_search_query(@expedia_ids_all)
      @descriptions = []
@@ -62,8 +66,12 @@ class SearchController < ApplicationController
     expedia_results[:fromPrice] = e["fromPrice"]
     expedia_results[:latLng] = e["latLng"]
 
-    expedia_array.push expedia_results if ids_to_filter.include?e["id"]
+    expedia_array.push expedia_results
+    @i = @i + 1
+    break if @i == 10
     end
+
+    @i = 0
 
     expedia_array
     #puts response.body, response.code, response.message, response.headers.inspect
@@ -127,6 +135,8 @@ s7AlWnIrepGsLoi6db-Oct6DCYrhatz9pmRQ-bOu"})
 private
 
   def set_expedia_id_arrays
+
+    @i = 0
 
     @expedia_ids_all = [184465,
         278043,

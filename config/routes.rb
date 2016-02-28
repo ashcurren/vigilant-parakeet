@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
       get 'searchform' => 'searchform#index', as: :searchform
 
-      get 'results' => 'search#index'
+      get 'results' => 'search#index', as: :results
+      get 'recommendations' => 'search#recommendation', as: :recommendations
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
