@@ -1,25 +1,35 @@
 class SearchController < ApplicationController
   before_filter :set_expedia_id_arrays
+  include ActionView::Helpers::TextHelper
 
   def index
-     @results = expedia_search_query(@expedia_ids_all)
+    #  @results = expedia_search_query(@expedia_ids_all)
      @descriptions = []
      @day1 = []
      @day2 = []
      @day3 = []
-     @expedia_ids_all.each {|x| @descriptions.push expedia_detail_query x }
-     @expedia_ids_day1.each {|x| @day1.push expedia_detail_query x }
-     @expedia_ids_day2.each {|x| @day2.push expedia_detail_query x }
-     @expedia_ids_day3.each {|x| @day3.push expedia_detail_query x }
+     #@expedia_ids_all.each {|x| @descriptions.push expedia_detail_query x }
 
-     @day1_uberinfo = []
-    #  @day1.each_with_index do |d,i|
-    #    @day1_uberinfo.push(uber_detail_query(@day1[i][:latLng],@day1[i+1][:latLng])) if (i+1) != @day1.size
+    @expedia_ids_day1.each {|x| @day1.push expedia_detail_query x }
+    @expedia_ids_day2.each {|x| @day2.push expedia_detail_query x }
+
+    @day1_uberinfo = []
+    @day2_uberinfo = []
+
+    @day1.each_with_index do |d,i|
+      @day1_uberinfo.push(uber_detail_query(@day1[i][:latLng],@day1[i+1][:latLng])) if (i+1) != @day1.size
+    end
+
+    @day2.each_with_index do |d,i|
+      @day2_uberinfo.push(uber_detail_query(@day2[i][:latLng],@day2[i+1][:latLng])) if (i+1) != @day2.size
+    end
+
+
+    # @expedia_ids_day3.each {|x| @day3.push expedia_detail_query x }
+    #
+    # @day2.each_with_index do |d,i|
+    #    @day1_uberinfo.push(uber_detail_query(@day2[i][:latLng],@day2[i+1][:latLng])) if (i+1) != @day2.size
     #  end
-
-     @day2.each_with_index do |d,i|
-       @day1_uberinfo.push(uber_detail_query(@day2[i][:latLng],@day2[i+1][:latLng])) if (i+1) != @day2.size
-     end
 
   end
 
@@ -71,12 +81,16 @@ class SearchController < ApplicationController
     expedia_details_des = ActionController::Base.helpers.sanitize expedia_details_hash["description"], tags: []
     expedia_details_title = expedia_details_hash["title"]
     expedia_details_latLng = expedia_details_hash["latLng"]
+    expedia_details_price = expedia_details_hash["fromPrice"]
+    expedia_details_duration = expedia_details_hash["duration"]
 
     expedia_load = Hash.new()
-    expedia_load[:imageUrl] = expedia_details_hash
-    expedia_load[:description] = expedia_details_des
+    expedia_load[:imageUrl] = expedia_details_imgUrl
+    expedia_load[:description] = truncate(expedia_details_des, length: 250, separator: ' ', omission: '... (continued)')
     expedia_load[:title] = expedia_details_title
     expedia_load[:latLng] = expedia_details_latLng
+    expedia_load[:price] = expedia_details_price
+    expedia_load[:duration] = expedia_details_duration
 
     expedia_load
 

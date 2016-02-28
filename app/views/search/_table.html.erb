@@ -1,0 +1,83 @@
+<div class="container">
+
+ <div class="day-wrapper">
+    <div class="row">
+        <div class="day text-center col-md-11">
+        <h1>Day 1 </h3>
+      </div>
+    </div>
+
+    <!-- loop starts -->
+    <% @day1.each_with_index do |d,i| %>
+    <div class="row">
+        <div class="results-pic col-md-4"><%= image_tag d[:imageUrl], size:"300x150" %></div>
+
+        <div class="results-details col-md-7">
+        <h4><%= d[:title]%></h4>
+        <p><%= d[:description]%></p>
+        <h5>Time required: <b>2 hours</b></h5>
+        </div>
+
+        <div class="results-price col-md-1">
+          <h3><%=d[:price]%></h3>
+        </div>
+
+    </div>
+    <!-- conditonal loop -->
+      <% if @day1_uberinfo.size != i %>
+      <div class="row">
+          <div class="uber-price col-md-11">
+            <div class="text-center"><h3><%=@day1_uberinfo[i][:mins]%> minutes</h3> </div>
+            <div class="text-center"><h3><%=@day1_uberinfo[i][:price]%></h3> </div>
+            <div class="text-center"><h3><%=@day1_uberinfo[i][:miles]%> miles</h3>  </div>
+            <div class="text-center"> to next attraction  </div>
+          </div>
+      </div>
+      <% end %>
+
+    <% end %>
+<!-- loop here -->
+</div>
+
+<div class="day-wrapper">
+<div class="row">
+    <div class="day text-center col-md-11">
+    <h1>Day 2 </h3>
+  </div>
+</div>
+
+<!-- loop starts -->
+<% @day2.each_with_index do |d,i| %>
+<div class="row">
+    <div class="results-pic col-md-4"><%= image_tag d[:imageUrl], size:"300x150" %></div>
+
+    <div class="results-details col-md-7">
+    <h4><%= d[:title]%></h4>
+    <p><%= d[:description]%></p>
+    <h5>Time required: <b>2 hours</b></h5>
+    </div>
+
+    <div class="results-price col-md-1">
+      <h3><%=d[:price]%></h3>
+    </div>
+
+</div>
+<!-- conditonal loop -->
+  <% if @day2_uberinfo.size != i %>
+  <div class="row">
+      <div class="uber-price col-md-11">
+        <div class="text-center"><h3><%=@day2_uberinfo[i][:mins]%> minutes</h3> </div>
+        <div class="text-center"><h3><%=@day2_uberinfo[i][:price]%></h3> </div>
+        <div class="text-center"><h3><%=@day2_uberinfo[i][:miles]%> miles</h3>  </div>
+        <div class="text-center"> to next attraction  </div>
+      </div>
+  </div>
+  <% end %>
+
+<% end %>
+<!-- loop here -->
+</div>
+
+
+
+</div>
