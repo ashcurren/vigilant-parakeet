@@ -45,6 +45,14 @@ class SearchController < ApplicationController
 
     expedia_details_imgUrl = expedia_details_hash["images"].first["url"]
     expedia_details_des = ActionController::Base.helpers.sanitize expedia_details_hash["description"], tags: []
+    expedia_details_title = expedia_details_hash["title"]
+
+    expedia_load = Hash.new()
+    expedia_load[:imageUrl] = expedia_details_hash
+    expedia_load[:description] = expedia_details_des
+    expedia_load[:title] = expedia_details_title
+
+    expedia_load
 
   end
 
