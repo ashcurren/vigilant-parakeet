@@ -7,11 +7,5 @@ class HomeController < ApplicationController
 
   end
 
-  def search
-
-    render "home/search"
-
-  end
-
 
 end
