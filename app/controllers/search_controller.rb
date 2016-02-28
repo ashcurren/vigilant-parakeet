@@ -8,7 +8,8 @@ class SearchController < ApplicationController
   end
 
   def generate_rec_html
-#    @expedia_ids_day1.each do |event_id|
+    # this will return the full results for each day, one array per day.
+    expedia_search_query()
 
   end
 
@@ -40,7 +41,6 @@ class SearchController < ApplicationController
 
     expedia_array
     #puts response.body, response.code, response.message, response.headers.inspect
-
   end
 
   def expedia_detail_query(id)
