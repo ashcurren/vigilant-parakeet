@@ -10,8 +10,16 @@
     <br/><%= truncate(@descriptions[i][:description], length: 200, separator: ' ') %>
     <%= r[:latLng] %>
   </div>
-    
+
   <br/>
+<% end %>
+
+<% @day1_uberinfo.each do |d| %>
+  <div class="row">
+      <%= "Minutes: "+d[:mins].to_s %>
+      <%= "Miles: "+d[:miles].to_s %>
+      <%= "Price: "+d[:price].to_s %>
+  </div>
 <% end %>
 
 </div>
