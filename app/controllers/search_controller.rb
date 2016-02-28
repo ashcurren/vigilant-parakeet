@@ -4,7 +4,23 @@ class SearchController < ApplicationController
   def index
      @results = expedia_search_query(@expedia_ids_all)
      @descriptions = []
+     @day1 = []
+     @day2 = []
+     @day3 = []
      @expedia_ids_all.each {|x| @descriptions.push expedia_detail_query x }
+     @expedia_ids_day1.each {|x| @day1.push expedia_detail_query x }
+     @expedia_ids_day2.each {|x| @day2.push expedia_detail_query x }
+     @expedia_ids_day3.each {|x| @day3.push expedia_detail_query x }
+
+     @day1_uberinfo = []
+    #  @day1.each_with_index do |d,i|
+    #    @day1_uberinfo.push(uber_detail_query(@day1[i][:latLng],@day1[i+1][:latLng])) if (i+1) != @day1.size
+    #  end
+
+     @day2.each_with_index do |d,i|
+       @day1_uberinfo.push(uber_detail_query(@day2[i][:latLng],@day2[i+1][:latLng])) if (i+1) != @day2.size
+     end
+
   end
 
   def generate_rec_html
@@ -54,11 +70,13 @@ class SearchController < ApplicationController
     expedia_details_imgUrl = expedia_details_hash["images"].first["url"]
     expedia_details_des = ActionController::Base.helpers.sanitize expedia_details_hash["description"], tags: []
     expedia_details_title = expedia_details_hash["title"]
+    expedia_details_latLng = expedia_details_hash["latLng"]
 
     expedia_load = Hash.new()
     expedia_load[:imageUrl] = expedia_details_hash
     expedia_load[:description] = expedia_details_des
     expedia_load[:title] = expedia_details_title
+    expedia_load[:latLng] = expedia_details_latLng
 
     expedia_load
 
@@ -66,12 +84,10 @@ class SearchController < ApplicationController
 
   def uber_detail_query(sLatLong, eLatLong)
 
-    sLatLong.split(",")
-
-    sLat = sLat.to_s
-    sLong = sLong.to_s
-    eLat = eLat.to_s
-    eLong = eLong.to_s
+    sLat = sLatLong.split(",")[0]
+    sLong = sLatLong.split(",")[1]
+    eLat = eLatLong.split(",")[0]
+    eLong = eLatLong.split(",")[1]
 
     response = HTTParty.get('https://api.uber.com/v1/estimates/price?start_latitude='+ sLat +'&start_longitude='+ sLong +'&end_latitude='+ eLat +'&end_longitude='+ eLong, headers: {"Authorization" => "Token OOWRpDScLJvhdQm4yUfmA24r_Kz0OKNdoKh7MuC1
 s7AlWnIrepGsLoi6db-Oct6DCYrhatz9pmRQ-bOu"})
